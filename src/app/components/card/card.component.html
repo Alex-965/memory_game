@@ -1,0 +1,17 @@
+<!-- Розміщення файлу: src/app/components/card/card.component.html -->
+<div class="scene" (click)="handleClick()">
+  <!-- ЗМІНА: Картка перевернута (is-flipped) ТІЛЬКИ у стані 'flipped'.
+       У стані 'matched' клас is-flipped відсутній, і вона повертається на сорочку.
+  -->
+  <div class="card" [ngClass]="{'is-flipped': card.state === 'flipped'}">
+
+    <div class="card__face card__face--front">
+      <img [src]="card.imageUrl" alt="card image" onerror="this.src='https://placehold.co/100x100/555/fff?text=Error'">
+    </div>
+
+    <div class="card__face card__face--back">
+      <span>?</span>
+    </div>
+
+  </div>
+</div>

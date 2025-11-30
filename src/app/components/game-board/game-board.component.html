@@ -1,0 +1,109 @@
+@if (gameState === 'menu') {
+  <div class="menu-container">
+    <h2>Memory Game</h2>
+
+    <div class="mode-switch">
+      <button
+        [class.active]="gameMode === 'single'"
+        (click)="setGameMode('single')">
+        Соло
+      </button>
+      <button
+        [class.active]="gameMode === 'multi'"
+        (click)="setGameMode('multi')">
+        1 vs 1
+      </button>
+    </div>
+
+    <h3>Оберіть складність</h3>
+    <div class="level-buttons">
+      @for (level of levels; track level.name) {
+        <button class="level-btn" (click)="startGame(level)">
+          {{ level.name }}
+        </button>
+      }
+    </div>
+  </div>
+}
+
+@if (gameState === 'playing') {
+  <div class="game-header">
+
+    <div class="buttons-group">
+      <button class="control-btn" (click)="goToMenu()" title="В меню">
+        В меню
+      </button>
+      <button class="control-btn restart-btn" (click)="restartGame()" title="Рестарт">
+        Перезапустити
+      </button>
+    </div>
+
+    @if (gameMode === 'single') {
+      <div class="stats-panel">
+        <div class="stat-item">Час: {{ timeDisplay }}</div>
+        <div class="stat-item">Хід: {{ moves }}</div>
+      </div>
+    }
+
+    @if (gameMode === 'multi') {
+      <div class="multi-stats">
+        <div class="player-score" [class.active]="activePlayer === 1">
+          <span class="p-name">Гравець 1</span>
+          <span class="p-val">{{ scores.p1 }}</span>
+        </div>
+        <div class="vs">VS</div>
+        <div class="player-score" [class.active]="activePlayer === 2">
+          <span class="p-name">Гравець 2</span>
+          <span class="p-val">{{ scores.p2 }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="board-grid" [style.grid-template-columns]="'repeat(' + currentLevel.cols + ', 1fr)'">
+    @for (card of cards; track card.id) {
+      <app-card
+        [card]="card"
+        (cardClicked)="onCardClicked($event)"
+      ></app-card>
+    }
+  </div>
+}
+
+@if (gameState === 'won') {
+  <div class="victory-overlay">
+    <div class="victory-modal">
+
+      @if (gameMode === 'single') {
+        <h2>Перемога!</h2>
+        <p>Рівень: {{ currentLevel.name }}</p>
+        <div class="results-grid">
+          <div class="res-item"><span>Час:</span><strong>{{ timeDisplay }}</strong></div>
+          <div class="res-item"><span>Ходів:</span><strong>{{ moves }}</strong></div>
+        </div>
+        <p class="compliment">Ти молодець!</p>
+      }
+
+      @if (gameMode === 'multi') {
+        @if (scores.p1 === scores.p2) {
+          <h2>Нічия!</h2>
+          <p>Неймовірно! Бойова нічия!</p>
+        } @else {
+          <h2>{{ getMultiplayerWinner() }} переміг!</h2>
+        }
+
+        <div class="results-grid">
+          <div class="res-item" [style.color]="'#DD2476'">
+            <span>Гравець 1</span><strong>{{ scores.p1 }}</strong>
+          </div>
+          <div class="res-item" [style.color]="'#11998e'">
+            <span>Гравець 2</span><strong>{{ scores.p2 }}</strong>
+          </div>
+        </div>
+      }
+
+      <button (click)="goToMenu()">В меню</button>
+      <button (click)="startGame(currentLevel)">Грати знову</button>
+    </div>
+  </div>
+}

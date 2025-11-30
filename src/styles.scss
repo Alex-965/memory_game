@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+
+  background: radial-gradient(
+      circle at 50% 50%,
+      rgba(28, 58, 212, 1) 0%,   /* Синій */
+      rgba(194, 29, 209, 1) 50%, /* Фіолетовий/Рожевий */
+      rgba(191, 25, 58, 1) 100%  /* Червоний */
+  );
+
+  background-size: 800% 800%;
+  animation: smoothFloat 45s ease infinite alternate;
+}
+
+@keyframes smoothFloat {
+  0% { background-position: 0% 0%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}

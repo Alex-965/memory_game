@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CardComponent } from '../card/card.component';
 import { GameBoardComponent } from './game-board.component';
 
 describe('GameBoardComponent', () => {

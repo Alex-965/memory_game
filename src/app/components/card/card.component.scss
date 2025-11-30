@@ -1,16 +1,12 @@
-/* Розміщення файлу: src/app/components/card/card.component.scss */
 .scene {
-  /* Карта буде квадратною */
   aspect-ratio: 1 / 1;
   width: 100%;
   cursor: pointer;
-  /* Додаємо transition для плавного зникнення/появи */
   transition: opacity 0.4s ease-out;
 
-  /* Ефект при наведенні на закриту карту */
   &:hover .card:not(.is-flipped) {
     transform: rotateY(20deg);
-    box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -21,11 +17,11 @@
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s, opacity 0.5s; /* Додано opacity для плавного затемнення */
   transform-style: preserve-3d;
   border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 
   &.is-flipped {
     transform: rotateY(180deg);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Менша тінь, коли лежить на столі */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -39,49 +35,40 @@
   align-items: center;
   border-radius: 15px;
   overflow: hidden;
-  border: 3px solid rgba(255, 255, 255, 0.1); /* Тонка рамка */
+  border: 3px solid rgba(255, 255, 255, 0.1);
 
   &--front {
     transform: rotateY(180deg);
     background-color: #fff;
+
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Картинка заповнює всю площу без спотворень */
+      object-fit: cover;
     }
   }
 
   &--back {
-    /* Стильний градієнт для сорочки */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: rgba(255, 255, 255, 0.8);
     font-size: 3rem;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 
-    /* Додамо легкий патерн */
-    background-image:
-      linear-gradient(135deg, #667eea 0%, #764ba2 100%),
-      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px);
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%),
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px);
     background-blend-mode: overlay;
   }
 }
 
-/* Стиль для знайдених карт: зменшення прозорості, приглушення, блокування кліків */
 :host-context(.matched) .scene {
-  /* Блокуємо кліки, коли карта знайдена */
   pointer-events: none;
-  /* ЗМІНА: Використовуємо not-allowed, щоб чітко показати, що дія заборонена */
   cursor: not-allowed;
-  /* Зменшення прозорості (opacity) */
   opacity: 0.65;
 }
 
 :host-context(.matched) .card {
-  /* Забираємо тінь, щоб карта виглядала "втопленою" */
   box-shadow: none;
-  /* Забезпечуємо, що карта не має додаткових фільтрів */
   filter: none;
-  /* Гарантуємо, що карта залишається на 0 градусах (сорочкою) */
   transform: rotateY(0deg) !important;
 }

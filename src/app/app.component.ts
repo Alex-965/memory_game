@@ -1,4 +1,3 @@
-// Розміщення файлу: src/app/app.component.ts
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameBoardComponent } from './components/game-board/game-board.component';
@@ -11,7 +10,6 @@ import { GameBoardComponent } from './components/game-board/game-board.component
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-// Клас AppComponent перейменовано на App для уникнення конфлікту при об'єднанні файлів
 export class App {
   @ViewChild('gameBoardComponent') gameBoard!: GameBoardComponent;
 

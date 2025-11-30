@@ -1,8 +1,4 @@
-<!-- Розміщення файлу: src/app/components/card/card.component.html -->
 <div class="scene" (click)="handleClick()">
-  <!-- ЗМІНА: Картка перевернута (is-flipped) ТІЛЬКИ у стані 'flipped'.
-       У стані 'matched' клас is-flipped відсутній, і вона повертається на сорочку.
-  -->
   <div class="card" [ngClass]="{'is-flipped': card.state === 'flipped'}">
 
     <div class="card__face card__face--front">

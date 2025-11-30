@@ -1,7 +1,8 @@
-import {Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {CardComponent} from '../card/card.component';
-import {CardData, GameLevel} from '../../models/card.model';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CardComponent } from '../card/card.component';
+import { CardData, GameLevel } from '../../models/card.model';
 
 declare var Tone: any;
 
@@ -46,7 +47,7 @@ class SoundService {
 @Component({
   selector: 'app-game-board',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, FormsModule],
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
